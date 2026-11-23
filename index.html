@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>인플루언서 협업 성과</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+@font-face { font-family: 'Bithumb'; src: url('fonts/bithumb.otf') format('opentype'); font-display: swap; }
+:root {
+  --bg: #f4f6fa; --card: #ffffff; --ink: #141a24; --sub: #5d6778; --faint: #8b94a3; --line: #e3e7ee;
+  --blue: #2f6bff; --blue-soft: #e8efff; --blue-mid: #9db7ff; --gray-soft: #eef0f4;
+  --green: #12a150; --green-soft: #e3f6ea; --amber: #b86e00; --amber-soft: #fff3dc;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1218; --card: #181c24; --ink: #eef1f6; --sub: #9aa3b2; --faint: #6f7888; --line: #2a303b;
+    --blue: #6f9bff; --blue-soft: #1d2a47; --blue-mid: #3b5591; --gray-soft: #232833;
+    --green: #4cd387; --green-soft: #183326; --amber: #f0b356; --amber-soft: #3a2c14;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1218; --card: #181c24; --ink: #eef1f6; --sub: #9aa3b2; --faint: #6f7888; --line: #2a303b;
+  --blue: #6f9bff; --blue-soft: #1d2a47; --blue-mid: #3b5591; --gray-soft: #232833;
+  --green: #4cd387; --green-soft: #183326; --amber: #f0b356; --amber-soft: #3a2c14;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: 'Pretendard', 'Noto Sans KR', system-ui, sans-serif; line-height: 1.5; }
+a { color: inherit; }
+.wrap { max-width: 920px; margin: 0 auto; padding: 48px 16px 72px; }
+.eyebrow { color: var(--blue); font-weight: 700; font-size: 14px; }
+h1 { font-family: 'Bithumb', 'Pretendard', sans-serif; font-size: 40px; letter-spacing: -0.04em; margin: 6px 0 10px; line-height: 1.2; }
+.lead { color: var(--sub); font-size: 16px; max-width: 640px; margin: 0; }
+.meta { color: var(--faint); font-size: 13px; margin-top: 10px; }
+
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 32px 0 8px; }
+.kpi { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 16px; }
+.kpi .label { font-size: 13px; color: var(--sub); }
+.kpi .num { font-size: 32px; font-weight: 800; letter-spacing: -0.03em; margin-top: 4px; font-variant-numeric: tabular-nums; }
+.kpi .num small { font-size: 15px; font-weight: 600; margin-left: 2px; }
+.kpi .note { font-size: 12px; color: var(--faint); margin-top: 2px; }
+.kpi.main { background: var(--blue); border-color: var(--blue); color: #fff; }
+.kpi.main .label, .kpi.main .note { color: rgba(255,255,255,.85); }
+
+.tabs { position: sticky; top: 0; z-index: 5; background: var(--bg); padding: 16px 0 12px; margin-top: 28px; display: flex; gap: 8px; }
+.tab { appearance: none; border: 1px solid var(--line); background: var(--card); color: var(--sub); font: inherit; font-weight: 700; font-size: 15px; padding: 10px 18px; border-radius: 999px; cursor: pointer; }
+.tab[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.tab .c { font-weight: 600; opacity: .7; margin-left: 4px; }
+
+h2 { font-size: 22px; letter-spacing: -0.03em; margin: 28px 0 6px; }
+.h2sub { color: var(--sub); font-size: 14px; margin: 0 0 16px; }
+h3 { font-size: 15px; margin: 0 0 10px; letter-spacing: -0.01em; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 24px; margin-bottom: 16px; }
+.card.feature { border: 2px solid var(--blue); }
+.chead { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
+.cname { font-size: 22px; font-weight: 800; letter-spacing: -0.03em; }
+.chandle { color: var(--sub); font-size: 14px; }
+.badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: var(--gray-soft); color: var(--sub); white-space: nowrap; }
+.badge.blue { background: var(--blue-soft); color: var(--blue); }
+.badge.green { background: var(--green-soft); color: var(--green); }
+.badge.amber { background: var(--amber-soft); color: var(--amber); }
+.badges { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.grid2 { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; }
+.funnel .row { margin-bottom: 14px; }
+.funnel .top { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 6px; }
+.funnel .top b { font-variant-numeric: tabular-nums; }
+.funnel .bar { height: 30px; background: var(--gray-soft); border-radius: 8px; overflow: hidden; }
+.funnel .fill { height: 100%; background: var(--blue); border-radius: 8px; }
+.funnel .rate { font-size: 12px; color: var(--blue); font-weight: 700; margin: -4px 0 10px 2px; }
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.stat { background: var(--gray-soft); border-radius: 12px; padding: 12px; }
+.stat .l { font-size: 12px; color: var(--sub); }
+.stat .v { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+
+.daily { display: flex; align-items: flex-end; gap: 8px; height: 120px; padding-top: 18px; }
+.daily .d { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+.daily .b { width: 100%; max-width: 36px; background: var(--blue-mid); border-radius: 6px 6px 2px 2px; position: relative; }
+.daily .b.peak { background: var(--blue); }
+.daily .n { font-size: 12px; font-weight: 700; margin-bottom: 4px; font-variant-numeric: tabular-nums; }
+.daily .x { font-size: 11px; color: var(--faint); margin-top: 6px; }
+
+.points { margin: 18px 0 0; padding: 0; list-style: none; }
+.points li { position: relative; padding-left: 18px; margin-bottom: 8px; font-size: 14px; color: var(--ink); }
+.points li::before { content: ''; position: absolute; left: 2px; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
+
+.contents { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin-top: 18px; }
+.content { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; text-decoration: none; font-size: 14px; }
+.content:hover { border-color: var(--blue); }
+.content .t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.content .t span { color: var(--faint); font-size: 12px; margin-right: 6px; }
+.content .v { color: var(--sub); font-size: 13px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+.rounds { display: grid; gap: 10px; }
+.round { display: grid; grid-template-columns: 48px 1fr auto; gap: 12px; align-items: center; padding: 12px 14px; background: var(--gray-soft); border-radius: 12px; font-size: 14px; }
+.round .rl { font-weight: 800; color: var(--blue); }
+.round .rp { color: var(--sub); font-size: 13px; }
+.round .rr { font-weight: 700; text-align: right; }
+.round a.rr { color: var(--green); text-decoration: none; }
+
+.compare .row { display: grid; grid-template-columns: 150px 1fr 56px; gap: 12px; align-items: center; margin-bottom: 10px; font-size: 14px; }
+.compare .bar { height: 22px; background: var(--gray-soft); border-radius: 6px; overflow: hidden; }
+.compare .fill { height: 100%; background: var(--blue); border-radius: 6px; }
+.compare .fill.yr { background: var(--green); }
+.compare .val { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+.legend { display: flex; gap: 16px; font-size: 12px; color: var(--sub); margin-top: 8px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { font-size: 12px; color: var(--sub); font-weight: 600; background: var(--gray-soft); }
+td.r, th.r { text-align: right; }
+tr:last-child td { border-bottom: 0; }
+.tablecard { padding: 0; overflow: hidden; }
+.tablecard .scroll { overflow-x: auto; }
+.tablecard h3 { padding: 18px 20px 4px; }
+.tablecard .crit { padding: 0 20px 14px; font-size: 13px; color: var(--sub); }
+.pending { border: 1.5px dashed var(--line); background: transparent; color: var(--sub); font-size: 14px; text-align: center; padding: 28px 20px; }
+.pending b { color: var(--ink); }
+
+.role { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.role div { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 16px; font-size: 14px; }
+.role b { display: block; font-size: 13px; color: var(--blue); margin-bottom: 4px; }
+footer { margin-top: 40px; font-size: 12px; color: var(--faint); line-height: 1.6; }
+[hidden] { display: none !important; }
+
+@media (max-width: 760px) {
+  h1 { font-size: 30px; }
+  .kpis { grid-template-columns: 1fr 1fr; }
+  .kpi .num { font-size: 26px; }
+  .grid2 { grid-template-columns: 1fr; }
+  .role { grid-template-columns: 1fr 1fr; }
+  .compare .row { grid-template-columns: 110px 1fr 48px; }
+  .card { padding: 18px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">두부핑퐁 · Growth Marketing</div>
+  <h1>인플루언서 협업 성과</h1>
+  <p class="lead">육아·교육 크리에이터와 진행한 공동구매와 릴스 협업을 정리했습니다. 섭외부터 가이드 제작, 전용 랜딩·결제 상품 세팅, 성과 집계까지 직접 운영했습니다.</p>
+  <div class="meta" id="meta"></div>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="t-gb" aria-selected="true" aria-controls="p-gb">공구 <span class="c" id="c-gb"></span></button>
+    <button class="tab" role="tab" id="t-rl" aria-selected="false" aria-controls="p-rl">릴스 <span class="c" id="c-rl"></span></button>
+  </div>
+
+  <section id="p-gb" role="tabpanel" aria-labelledby="t-gb">
+    <h2>공구별 결제 건수</h2>
+    <p class="h2sub">공구 기간 동안 해당 크리에이터 링크로 발생한 결제 기준입니다.</p>
+    <div class="card compare" id="compare"></div>
+
+    <h2>대표 사례</h2>
+    <p class="h2sub">유입부터 결제까지 퍼널을 끝까지 추적한 공구입니다.</p>
+    <div id="feature"></div>
+
+    <h2>재협업 · 기타 공구</h2>
+    <p class="h2sub">성과가 난 크리에이터와는 오퍼를 바꿔 다시 진행했습니다.</p>
+    <div id="others"></div>
+  </section>
+
+  <section id="p-rl" role="tabpanel" aria-labelledby="t-rl" hidden>
+    <h2>인포크 시딩 캠페인</h2>
+    <p class="h2sub" id="rl-sub"></p>
+    <div class="kpis" id="rl-kpis" style="margin-top:0"></div>
+    <div id="rl-partner"></div>
+    <div id="rl-results"></div>
+    <div id="rl-tracks"></div>
+  </section>
+
+  <h2>맡은 역할</h2>
+  <div class="role">
+    <div><b>섭외·선정</b>팔로워보다 평균 조회수와 교육 콘텐츠 협업 이력을 기준으로 후보를 추렸습니다.</div>
+    <div><b>가이드·브리프</b>크리에이터별 공구 안내서와 콘텐츠 가이드를 만들어 메시지를 맞췄습니다.</div>
+    <div><b>전용 상품·랜딩</b>공구마다 전용 결제 상품과 랜딩을 만들어 다른 유입과 섞이지 않게 했습니다.</div>
+    <div><b>성과 집계</b>결제 알림과 TM 리드를 대조해 인플루언서 기여분만 따로 집계했습니다.</div>
+  </div>
+
+  <footer>결제 건수는 공구 정산 기준이며, 구매자 개인정보는 싣지 않았습니다. 진행 중인 공구는 실적 페이지에서 매일 갱신됩니다.</footer>
+</div>
+
+<script>document.write('<script src="data.js?t=' + Date.now() + '"><\/script>');</script>
+<script>
+(function () {
+  var D = window.DATA;
+  var $ = function (id) { return document.getElementById(id); };
+  var n = function (v) { return v.toLocaleString('ko-KR'); };
+  var won = function (v) { return n(v) + '원'; };
+  var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+
+  var gbs = D.groupbuys;
+  var rounds = [];
+  gbs.forEach(function (g) {
+    if (g.rounds) g.rounds.forEach(function (r) { rounds.push({ g: g, r: r }); });
+    else rounds.push({ g: g, r: { label: '1차', period: g.period, result: g.unit + ' ' + g.orders + '건', orders: g.orders, unit: g.unit } });
+  });
+  var done = rounds.filter(function (x) { return x.r.orders != null; });
+  var totalOrders = done.reduce(function (s, x) { return s + x.r.orders; }, 0);
+  var repeat = gbs.filter(function (g) { return g.rounds && g.rounds.length > 1; }).length;
+  var reelCreators = D.reels.tracks.reduce(function (s, t) { return s + t.creators.length; }, 0);
+  var feature = gbs.filter(function (g) { return g.highlight; })[0];
+  var fv = feature.funnel;
+
+  $('meta').textContent = '2026.06 ~ 진행 중 · ' + D.updated.replace(/-/g, '.') + ' 기준';
+  $('c-gb').textContent = gbs.length + '명';
+  $('c-rl').textContent = reelCreators + '명';
+
+  $('kpis').innerHTML =
+    kpi('협업 크리에이터', (gbs.length + reelCreators), '명', '공구 ' + gbs.length + ' · 릴스 ' + reelCreators) +
+    kpi('공구 누적 결제', totalOrders, '건', '완료된 공구 ' + done.length + '회 기준') +
+    kpi('재협업', repeat + '/' + gbs.length, '명', '공구 크리에이터 중 2회 이상 진행') +
+    kpi('방문 → 결제 전환율', (fv[2].value / fv[0].value * 100).toFixed(1), '%', feature.name + ' 공구 랜딩 기준', true);
+
+  function kpi(l, v, u, note, main) {
+    return '<div class="kpi' + (main ? ' main' : '') + '"><div class="label">' + l + '</div><div class="num">' + v + '<small>' + u + '</small></div><div class="note">' + note + '</div></div>';
+  }
+
+  // 공구별 결제 비교
+  var max = Math.max.apply(null, done.map(function (x) { return x.r.orders; }));
+  var ch = '';
+  rounds.forEach(function (x) {
+    var isYear = /1년권/.test(x.r.result);
+    var label = esc(x.g.name) + ' <span style="color:var(--faint)">' + x.r.label + '</span>';
+    if (x.r.orders == null) {
+      ch += '<div class="row"><div>' + label + '</div><div><span class="badge green">진행 중</span></div><div class="val"></div></div>';
+    } else {
+      ch += '<div class="row"><div>' + label + '</div><div class="bar"><div class="fill' + (isYear ? ' yr' : '') + '" style="width:' + Math.max(x.r.orders / max * 100, 1) + '%"></div></div><div class="val">' + x.r.orders + '건</div></div>';
+    }
+  });
+  ch += '<div class="legend"><span><i style="background:var(--blue)"></i>체험권</span><span><i style="background:var(--green)"></i>정규 1년권</span></div>';
+  $('compare').innerHTML = ch;
+
+  // 대표 사례
+  var g = feature;
+  var views = g.contents.reduce(function (a, c) { return a + (c.views || 0); }, 0);
+  var fh = '';
+  fv.forEach(function (f, i) {
+    fh += '<div class="row"><div class="top"><span>' + f.label + '</span><b>' + n(f.value) + '회</b></div><div class="bar"><div class="fill" style="width:' + (f.value / fv[0].value * 100) + '%"></div></div></div>';
+    if (i < fv.length - 1) fh += '<div class="rate">↓ ' + (fv[i + 1].value / f.value * 100).toFixed(1) + '%</div>';
+  });
+  var dmax = Math.max.apply(null, g.daily.map(function (d) { return d[1]; }));
+  var dh = g.daily.map(function (d) {
+    return '<div class="d"><div class="n">' + d[1] + '</div><div class="b' + (d[1] === dmax ? ' peak' : '') + '" style="height:' + (d[1] / dmax * 80) + 'px"></div><div class="x">' + d[0] + '</div></div>';
+  }).join('');
+  $('feature').innerHTML =
+    '<div class="card feature">' +
+      '<div class="chead"><div><div class="cname">' + esc(g.name) + '</div><div class="chandle">' + esc(g.handle) + ' · ' + esc(g.platform) + '</div></div>' +
+      '<div class="badges"><span class="badge blue">' + esc(g.period) + '</span><span class="badge">' + esc(g.product) + '</span></div></div>' +
+      '<div class="grid2">' +
+        '<div><h3>유입 → 결제 퍼널</h3><div class="funnel">' + fh + '</div></div>' +
+        '<div><h3>핵심 지표</h3><div class="stats">' +
+          stat('결제', g.orders + '건') + stat('방문 → 결제', (fv[2].value / fv[0].value * 100).toFixed(1) + '%') +
+          stat('랜딩 → 버튼 클릭', (fv[1].value / fv[0].value * 100).toFixed(1) + '%') + stat('유튜브 조회수', n(views) + '회') +
+        '</div><h3 style="margin-top:18px">일자별 결제</h3><div class="daily">' + dh + '</div></div>' +
+      '</div>' +
+      '<ul class="points">' + g.points.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ul>' +
+      '<div class="contents">' + contents(g.contents) + '</div>' +
+    '</div>';
+
+  function stat(l, v) { return '<div class="stat"><div class="l">' + l + '</div><div class="v">' + v + '</div></div>'; }
+  function contents(list) {
+    return list.map(function (c) {
+      var v = c.views ? '조회 ' + n(c.views) + (c.likes ? ' · 좋아요 ' + n(c.likes) : '') : '보기 →';
+      return '<a class="content" href="' + esc(c.url) + '" target="_blank" rel="noopener"><span class="t"><span>' + esc(c.type) + '</span>' + esc(c.title) + '</span><span class="v">' + v + '</span></a>';
+    }).join('');
+  }
+
+  // 기타
+  $('others').innerHTML = gbs.filter(function (x) { return !x.highlight; }).map(function (g) {
+    var rep = g.rounds.length > 1;
+    var rh = g.rounds.map(function (r) {
+      var right = r.live ? '<a class="rr" href="' + r.tracker + '" target="_blank" rel="noopener">' + esc(r.result) + ' · 실적 보기 →</a>' : '<span class="rr">' + esc(r.result) + '</span>';
+      return '<div class="round"><span class="rl">' + r.label + '</span><span class="rp">' + esc(r.period) + '</span>' + right + '</div>';
+    }).join('');
+    return '<div class="card"><div class="chead"><div><div class="cname">' + esc(g.name) + '</div><div class="chandle">' + esc(g.handle) + ' · ' + esc(g.platform) + '</div></div>' +
+      '<div class="badges">' + (rep ? '<span class="badge green">재협업 ' + g.rounds.length + '회</span>' : '') + '</div></div>' +
+      '<div class="rounds">' + rh + '</div>' +
+      '<ul class="points">' + g.points.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ul>' +
+      '<div class="contents">' + contents(g.contents) + '</div></div>';
+  }).join('');
+
+  // 릴스
+  var R = D.reels, all = [];
+  R.tracks.forEach(function (t) { all = all.concat(t.creators); });
+  var fol = all.reduce(function (a, c) { return a + c[1]; }, 0), avg = all.reduce(function (a, c) { return a + c[2]; }, 0);
+  $('rl-sub').textContent = R.started + ' · ' + R.campaign + ' · ' + R.tracks.map(function (t) { return t.name + ' ' + t.creators.length + '명'; }).join(' / ');
+  $('rl-kpis').innerHTML =
+    kpi('선정 크리에이터', all.length, '명', R.tracks.length + '개 트랙') +
+    kpi('합산 팔로워', (fol / 10000).toFixed(1), '만', '선정 계정 기준') +
+    kpi('평균 조회수 합', (avg / 10000).toFixed(1), '만', '계정별 평균 조회수 합산') +
+    kpi('파트너십 광고 재활용', R.partnershipAds.length, '명', '메타 광고로 결제 발생 확인', true);
+  $('rl-partner').innerHTML = '<div class="card"><h3>크리에이터 콘텐츠 → 메타 파트너십 광고</h3>' +
+    '<p style="margin:0 0 12px;font-size:14px;color:var(--sub)">시딩으로 받은 릴스를 메타 파트너십 광고 소재로 다시 집행했고, 결제 알림의 UTM에서 아래 크리에이터 소재로 들어온 체험권 결제를 확인했습니다.</p>' +
+    '<div class="badges">' + R.partnershipAds.map(function (h) { return '<a class="badge blue" style="text-decoration:none" href="https://instagram.com/' + h + '" target="_blank" rel="noopener">@' + esc(h) + '</a>'; }).join('') + '</div></div>';
+  $('rl-results').innerHTML = R.contentResults ? '' :
+    '<div class="card pending"><b>릴스 콘텐츠 성과 추가 예정</b><br>인포크 콘텐츠 탭의 업로드 현황·조회수·반응을 받아 이 자리에 넣습니다.</div>';
+  $('rl-tracks').innerHTML = R.tracks.map(function (t) {
+    var rows = t.creators.slice().sort(function (a, b) { return b[2] - a[2]; }).map(function (c) {
+      var p = R.partnershipAds.indexOf(c[0]) > -1 ? ' <span class="badge blue">광고 활용</span>' : '';
+      return '<tr><td><a href="https://instagram.com/' + esc(c[0]) + '" target="_blank" rel="noopener">@' + esc(c[0]) + '</a>' + p + '</td><td class="r">' + n(c[1]) + '</td><td class="r">' + n(c[2]) + '</td></tr>';
+    }).join('');
+    return '<div class="card tablecard"><h3>' + esc(t.name) + ' 릴스 · ' + t.creators.length + '명</h3><div class="crit">선정 기준: ' + esc(t.criteria) + '</div>' +
+      '<div class="scroll"><table><thead><tr><th>크리에이터</th><th class="r">팔로워</th><th class="r">평균 조회수</th></tr></thead><tbody>' + rows + '</tbody></table></div></div>';
+  }).join('');
+
+  // 탭
+  var tabs = [['t-gb', 'p-gb'], ['t-rl', 'p-rl']];
+  tabs.forEach(function (t) {
+    $(t[0]).addEventListener('click', function () {
+      tabs.forEach(function (u) { $(u[0]).setAttribute('aria-selected', u[0] === t[0]); $(u[1]).hidden = u[0] !== t[0]; });
+      try { history.replaceState(null, '', t[0] === 't-rl' ? '#reels' : '#groupbuy'); } catch (e) {}
+    });
+  });
+  if (location.hash === '#reels') $('t-rl').click();
+})();
+</script>
+</body>
+</html>
