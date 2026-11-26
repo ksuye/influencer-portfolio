@@ -165,6 +165,10 @@ footer { margin-top: 40px; font-size: 12px; color: var(--faint); line-height: 1.
   </section>
 
   <section id="p-rl" role="tabpanel" aria-labelledby="t-rl" hidden>
+    <h2>브랜디드 릴스 협업</h2>
+    <p class="h2sub">기획과 영상 편집까지 직접 맡아 크리에이터 계정에 올린 릴스입니다.</p>
+    <div id="rl-collabs"></div>
+
     <h2>인포크 시딩 캠페인</h2>
     <p class="h2sub" id="rl-sub"></p>
     <div class="kpis" id="rl-kpis" style="margin-top:0"></div>
@@ -202,7 +206,8 @@ footer { margin-top: 40px; font-size: 12px; color: var(--faint); line-height: 1.
   var done = rounds.filter(function (x) { return x.r.orders != null; });
   var totalOrders = done.reduce(function (s, x) { return s + x.r.orders; }, 0);
   var repeat = gbs.filter(function (g) { return g.rounds && g.rounds.length > 1; }).length;
-  var reelCreators = D.reels.tracks.reduce(function (s, t) { return s + t.creators.length; }, 0);
+  var collabs = D.reels.collabs || [];
+  var reelCreators = D.reels.tracks.reduce(function (s, t) { return s + t.creators.length; }, 0) + collabs.length;
   var feature = gbs.filter(function (g) { return g.highlight; })[0];
   var fv = feature.funnel;
 
@@ -294,6 +299,15 @@ footer { margin-top: 40px; font-size: 12px; color: var(--faint); line-height: 1.
     kpi('합산 팔로워', (fol / 10000).toFixed(1), '만', '선정 계정 기준') +
     kpi('평균 조회수 합', (avg / 10000).toFixed(1), '만', '계정별 평균 조회수 합산') +
     kpi('파트너십 광고 재활용', R.partnershipAds.length, '명', '메타 광고로 결제 발생 확인', true);
+  $('rl-collabs').innerHTML = collabs.map(function (c) {
+    return '<div class="card feature"><div class="chead"><div><div class="cname">' + esc(c.name) + '</div><div class="chandle">' + esc(c.handle) + ' · 팔로워 ' + (c.followers / 10000).toFixed(1) + '만</div></div>' +
+      '<div class="badges"><span class="badge blue">' + esc(c.date) + '</span><span class="badge green">' + esc(c.role) + '</span></div></div>' +
+      '<div class="stats" style="grid-template-columns:repeat(auto-fit,minmax(120px,1fr))">' +
+        (c.views ? stat('조회수', n(c.views) + '회') : '') + stat('좋아요', n(c.likes)) + stat('댓글', n(c.comments)) + stat('형식', '<span style="font-size:14px">' + esc(c.format) + '</span>') +
+      '</div>' +
+      '<ul class="points">' + c.points.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ul>' +
+      '<div class="contents">' + contents([{ type: '인스타 릴스', title: c.name + ' × 두부핑퐁', url: c.url, views: c.views, likes: c.views ? c.likes : 0 }]) + '</div></div>';
+  }).join('');
   $('rl-partner').innerHTML = '<div class="card"><h3>크리에이터 콘텐츠 → 메타 파트너십 광고</h3>' +
     '<p style="margin:0 0 12px;font-size:14px;color:var(--sub)">시딩으로 받은 릴스를 메타 파트너십 광고 소재로 다시 집행했고, 결제 알림의 UTM에서 아래 크리에이터 소재로 들어온 체험권 결제를 확인했습니다.</p>' +
     '<div class="badges">' + R.partnershipAds.map(function (h) { return '<a class="badge blue" style="text-decoration:none" href="https://instagram.com/' + h + '" target="_blank" rel="noopener">@' + esc(h) + '</a>'; }).join('') + '</div></div>';
