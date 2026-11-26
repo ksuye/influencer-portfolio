@@ -166,7 +166,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--faint); line-height: 1.
 
   <section id="p-rl" role="tabpanel" aria-labelledby="t-rl" hidden>
     <h2>브랜디드 릴스 협업</h2>
-    <p class="h2sub">기획과 영상 편집까지 직접 맡아 크리에이터 계정에 올린 릴스입니다.</p>
+    <p class="h2sub">크리에이터 계정에 올라간 두부핑퐁 협업 릴스입니다.</p>
     <div id="rl-collabs"></div>
 
     <h2>인포크 시딩 캠페인</h2>
@@ -301,7 +301,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--faint); line-height: 1.
     kpi('파트너십 광고 재활용', R.partnershipAds.length, '명', '메타 광고로 결제 발생 확인', true);
   $('rl-collabs').innerHTML = collabs.map(function (c) {
     return '<div class="card feature"><div class="chead"><div><div class="cname">' + esc(c.name) + '</div><div class="chandle">' + esc(c.handle) + ' · 팔로워 ' + (c.followers / 10000).toFixed(1) + '만</div></div>' +
-      '<div class="badges"><span class="badge blue">' + esc(c.date) + '</span><span class="badge green">' + esc(c.role) + '</span></div></div>' +
+      '<div class="badges"><span class="badge blue">' + esc(c.date) + '</span>' + (c.role ? '<span class="badge green">' + esc(c.role) + '</span>' : '') + '</div></div>' +
       '<div class="stats" style="grid-template-columns:repeat(auto-fit,minmax(120px,1fr))">' +
         (c.views ? stat('조회수', n(c.views) + '회') : '') + stat('좋아요', n(c.likes)) + stat('댓글', n(c.comments)) + stat('형식', '<span style="font-size:14px">' + esc(c.format) + '</span>') +
       '</div>' +
