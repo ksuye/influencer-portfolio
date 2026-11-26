@@ -303,7 +303,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--faint); line-height: 1.
     return '<div class="card feature"><div class="chead"><div><div class="cname">' + esc(c.name) + '</div><div class="chandle">' + esc(c.handle) + ' · 팔로워 ' + (c.followers / 10000).toFixed(1) + '만</div></div>' +
       '<div class="badges"><span class="badge blue">' + esc(c.date) + '</span>' + (c.role ? '<span class="badge green">' + esc(c.role) + '</span>' : '') + '</div></div>' +
       '<div class="stats" style="grid-template-columns:repeat(auto-fit,minmax(120px,1fr))">' +
-        (c.views ? stat('조회수', n(c.views) + '회') : '') + stat('좋아요', n(c.likes)) + stat('댓글', n(c.comments)) + stat('형식', '<span style="font-size:14px">' + esc(c.format) + '</span>') +
+        (c.views ? stat('조회수', (c.views / 10000).toFixed(1) + '만회') : '') + stat('좋아요', n(c.likes)) + stat('댓글', n(c.comments)) + stat('형식', '<span style="font-size:14px">' + esc(c.format) + '</span>') +
       '</div>' +
       '<ul class="points">' + c.points.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ul>' +
       '<div class="contents">' + contents([{ type: '인스타 릴스', title: c.name + ' × 두부핑퐁', url: c.url, views: c.views, likes: c.views ? c.likes : 0 }]) + '</div></div>';
